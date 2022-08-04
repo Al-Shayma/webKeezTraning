@@ -20,6 +20,5 @@ class SalesMan(){
 
     fun main(args: Array<String>) {
         val p = SalesMan()
-        p createPyramid 4       // p.createPyramid(4)
     }
 
