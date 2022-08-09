@@ -1,6 +1,6 @@
 package com.example.getage
 
-class SalesMan(){
+class SalesMan():MyInterface{
 
         infix fun createPyramid(rows: Int) {
             var k = 0
@@ -16,7 +16,11 @@ class SalesMan(){
                 println()
             }
         }
+
+    override fun talk() {
+        println("bla bla bla")
     }
+}
 
     fun main(args: Array<String>) {
         val p = SalesMan()
