@@ -12,9 +12,6 @@ class MainActivity2 : AppCompatActivity() {
         setContentView(R.layout.activity_main2)
 
         findViewById<TextView>(R.id.textView).text = intent.extras?.get("name").toString()
-        val clickNow = findViewById<Button>(R.id.clickNowB);
-        clickNow.setOnClickListener {
-            Toast.makeText(this,"Button Clicked",Toast.LENGTH_SHORT).show()
+
         }
     }
-}
