@@ -8,15 +8,20 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.example.getage.fragments.FragmentA
 
 class MainActivity : AppCompatActivity() {
-
+    lateinit var loginBTN: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val yearOfBirthET = findViewById<EditText>(R.id.yearOfBirth_EditText)
         val ageTV = findViewById<TextView>(R.id.age_textView)
+        loginBTN=findViewById(R.id.loginBtn)
+        val fragmentA = FragmentA()
+        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragmentA).commit()
+
         val clickNow = findViewById<Button>(R.id.clickNowB);
         clickNow.setOnClickListener {
             Toast.makeText(this, "Button Clicked", Toast.LENGTH_SHORT).show()
@@ -26,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 //            val yOB = yearOfBirthET.editableText.toString()
 //            val age = 2022 - yOB.toInt()
 //            ageTV.text = age.toString()
+//            Toast.makeText(this,"button Clicked",Toast.LENGTH_SHORT).show()
                 var intent = Intent(this, MainActivity2::class.java)
                 intent.putExtra("name", "shimaa")
 
