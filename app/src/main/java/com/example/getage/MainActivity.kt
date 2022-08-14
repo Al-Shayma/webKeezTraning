@@ -8,9 +8,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import com.example.getage.fragments.FragmentA
+import com.example.getage.fragments.FragmentB
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Communicator {
     lateinit var loginBTN: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,5 +56,15 @@ class MainActivity : AppCompatActivity() {
             var today = DayOfWeeks.WED
             println(today)
         }
+    }
+
+    override fun passDatacom(editTextInput: String) {
+        val bundle = Bundle()
+        bundle.putString("message", editTextInput)
+        val transaction = this.supportFragmentManager.beginTransaction()
+        val fragmentB = FragmentB()
+        fragmentB.arguments = bundle
+        transaction.replace(R.id.fragmentContainer, fragmentB)
+        transaction.commit()
     }
 }
