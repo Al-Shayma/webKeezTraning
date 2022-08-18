@@ -1,23 +1,46 @@
-//package com.example.getage
-//
-//import android.content.Intent
-//import androidx.appcompat.app.AppCompatActivity
-//import android.os.Bundle
-//import android.util.Log
-//import android.widget.Button
-//import android.widget.EditText
-//import android.widget.TextView
-//import android.widget.Toast
-//import androidx.core.os.bundleOf
-//import com.example.getage.fragments.FragmentA
-//import com.example.getage.fragments.FragmentB
-//
-//class MainActivity : AppCompatActivity(), Communicator {
-//    lateinit var loginBTN: Button
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
+package com.example.getage
+
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.util.Log
+import android.widget.*
+import androidx.core.os.bundleOf
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.getage.databinding.ActivityMainBinding
+
+class MainActivity : AppCompatActivity(), Communicator {
+    lateinit var loginBTN: Button
+    lateinit var binding: ActivityMainBinding
+ override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+     binding = ActivityMainBinding.inflate(layoutInflater)
+     setContentView(binding.root)
+        setContentView(R.layout.activity_main)
+     val pro = arrayListOf(
+         Programmer(
+             "Shaymaa",
+             "trainee"
+         ),
+         Programmer(
+             "Sara",
+             "senior android"
+         ),
+         Programmer(
+             "Yahia",
+             "web developer"
+         )
+     )
+       val programmerAdapter = ProgrammerAdapter(this,pro)
+     binding.recyclerViewId.layoutManager = LinearLayoutManager(this)
+      binding.recyclerViewId.adapter = programmerAdapter
+
+//     val spinner1: Spinner = findViewById(R.id.spinner1)
+//val adapter1 = ArrayAdapter.createFromResource(
+//        this, R.array.colors, android.R.layout.simple_spinner_item)
+//adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//spinner1.adapter = adapter1
+
 //        val yearOfBirthET = findViewById<EditText>(R.id.yearOfBirth_EditText)
 //        val ageTV = findViewById<TextView>(R.id.age_textView)
 //        loginBTN=findViewById(R.id.loginBtn)
@@ -56,8 +79,12 @@
 //            var today = DayOfWeeks.WED
 //            println(today)
 //        }
-//    }
-//
+    }
+
+    override fun passDatacom(editTextInput: String) {
+        TODO("Not yet implemented")
+    }
+
 //    override fun passDatacom(editTextInput: String) {
 //        val bundle = Bundle()
 //        bundle.putString("message", editTextInput)
@@ -66,8 +93,8 @@
 //        fragmentB.arguments = bundle
 //        transaction.replace(R.id.fragmentContainer, fragmentB)
 //        transaction.commit()
-
-
+//
+//
 // intent :
 //const val EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE"
 //
@@ -100,21 +127,17 @@
 //        text = message
 //    }
 //}
-
-
-
-
+//
+//
+//
+//
 // Adapter code :
 //val PROJECTION = arrayOf(Contacts.People._ID, People.NAME)
 //...
 //
 //// Get a Spinner and bind it to an ArrayAdapter that
 //// references a String array.
-//val spinner1: Spinner = findViewById(R.id.spinner1)
-//val adapter1 = ArrayAdapter.createFromResource(
-//        this, R.array.colors, android.R.layout.simple_spinner_item)
-//adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//spinner1.adapter = adapter1
+//
 //
 //// Load a Spinner and bind it to a data query.
 //val spinner2: Spinner = findViewById(R.id.spinner2)
@@ -130,7 +153,7 @@
 //        intArrayOf(android.R.id.text1))
 //adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 //spinner2.adapter = adapter2
-
+//
 // spinner code:
 //val spinner: Spinner = findViewById(R.id.spinner)
 //// Create an ArrayAdapter using the string array and a default spinner layout
@@ -154,7 +177,7 @@
 //    override fun onNothingSelected(parent: AdapterView<*>) {
 //        // Another interface callback
 //    }
-
+//
 //checkboxes:
 //fun onCheckboxClicked(view: View) {
 //    if (view is CheckBox) {
@@ -178,12 +201,12 @@
 //            // TODO: Veggie sandwich
 //        }
 //    }
-
-
-
+//
+//
+//
 //}
-
+//
 //}
 //}
 //    }
-//}
+}

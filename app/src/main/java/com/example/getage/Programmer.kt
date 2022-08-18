@@ -1,12 +1,4 @@
 package com.example.getage
 
-class Programmer : Employee() ,MyInterface {
+data class Programmer(val name: String, val title: String)
 
-    override fun work() {
-        print("I'm Programmer")
-    }
-
-    override fun talk() {
-        print("aaaaa")
-    }
-}
