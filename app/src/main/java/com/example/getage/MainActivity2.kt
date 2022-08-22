@@ -5,13 +5,14 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.example.getage.databinding.ActivityMainBinding
 
 class MainActivity2 : AppCompatActivity() {
+    lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main2)
-
-        findViewById<TextView>(R.id.textView).text = intent.extras?.get("name").toString()
-
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         }
-    }
+        }
+
