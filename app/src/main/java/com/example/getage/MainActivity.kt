@@ -9,6 +9,7 @@ import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.getage.databinding.ActivityMainBinding
 
+
 class MainActivity : AppCompatActivity(), Communicator {
     lateinit var loginBTN: Button
     lateinit var binding: ActivityMainBinding
@@ -16,36 +17,28 @@ class MainActivity : AppCompatActivity(), Communicator {
     super.onCreate(savedInstanceState)
      binding = ActivityMainBinding.inflate(layoutInflater)
      setContentView(binding.root)
-        setContentView(R.layout.activity_main)
-     val pro = arrayListOf(
-         Programmer(
-             "Shaymaa",
-             "trainee"
-         ),
-         Programmer(
-             "Sara",
-             "senior android"
-         ),
-         Programmer(
-             "Yahia",
-             "web developer"
-         )
-     )
-       val programmerAdapter = ProgrammerAdapter(this,pro)
-     binding.recyclerViewId.layoutManager = LinearLayoutManager(this)
-      binding.recyclerViewId.adapter = programmerAdapter
 
-//     val spinner1: Spinner = findViewById(R.id.spinner1)
-//val adapter1 = ArrayAdapter.createFromResource(
-//        this, R.array.colors, android.R.layout.simple_spinner_item)
-//adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//spinner1.adapter = adapter1
+//     val pro = arrayListOf(
+//         Programmer(
+//             "Shaymaa",
+//             "trainee"
+//         ),
+//         Programmer(
+//             "Sara",
+//             "senior android"
+//         ),
+//         Programmer(
+//             "Yahia",
+//             "web developer"
+//         )
+//     )
+//       val programmerAdapter = ProgrammerAdapter(this,pro)
+//     binding.recyclerViewId.layoutManager = LinearLayoutManager(this)
+//      binding.recyclerViewId.adapter = programmerAdapter
 
 //        val yearOfBirthET = findViewById<EditText>(R.id.yearOfBirth_EditText)
 //        val ageTV = findViewById<TextView>(R.id.age_textView)
 //        loginBTN=findViewById(R.id.loginBtn)
-//        val fragmentA = FragmentA()
-//        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragmentA).commit()
 //
 //        val clickNow = findViewById<Button>(R.id.clickNowB);
 //        clickNow.setOnClickListener {
@@ -80,7 +73,7 @@ class MainActivity : AppCompatActivity(), Communicator {
 //            println(today)
 //        }
     }
-
+//
     override fun passDatacom(editTextInput: String) {
         TODO("Not yet implemented")
     }
