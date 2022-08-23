@@ -1,21 +1,17 @@
 package com.example.getage
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.*
-import androidx.core.os.bundleOf
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.getage.databinding.ActivityMainBinding
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import com.example.getage.databinding.SharedPrefActivityBinding
 
 
-class MainActivity : AppCompatActivity(), Communicator {
+class SharedPrefActivity : AppCompatActivity(), Communicator {
     lateinit var loginBTN: Button
-    lateinit var binding: ActivityMainBinding
+    lateinit var binding: SharedPrefActivityBinding
  override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-     binding = ActivityMainBinding.inflate(layoutInflater)
+     binding = SharedPrefActivityBinding.inflate(layoutInflater)
      setContentView(binding.root)
      val sharedPref = getSharedPreferences("myPref", MODE_PRIVATE)
      val editor = sharedPref.edit()
@@ -40,23 +36,6 @@ class MainActivity : AppCompatActivity(), Communicator {
          }
      }
 
-//     val pro = arrayListOf(
-//         Programmer(
-//             "Shaymaa",
-//             "trainee"
-//         ),
-//         Programmer(
-//             "Sara",
-//             "senior android"
-//         ),
-//         Programmer(
-//             "Yahia",
-//             "web developer"
-//         )
-//     )
-//       val programmerAdapter = ProgrammerAdapter(this,pro)
-//     binding.recyclerViewId.layoutManager = LinearLayoutManager(this)
-//      binding.recyclerViewId.adapter = programmerAdapter
 
 //        val yearOfBirthET = findViewById<EditText>(R.id.yearOfBirth_EditText)
 //        val ageTV = findViewById<TextView>(R.id.age_textView)
