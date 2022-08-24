@@ -1,44 +1,66 @@
-package com.example.getage
+package com.example.getage.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.view.View
 import android.widget.*
-import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
+import com.example.getage.Communicator
+import com.example.getage.adapter.NoteAdapter
 import com.example.getage.databinding.ActivityMainBinding
+import com.example.getage.db.NoteDatabase
+import com.example.getage.util.Constants.NOTE_DATABASE
 
 
 class MainActivity : AppCompatActivity(), Communicator {
     lateinit var loginBTN: Button
     lateinit var binding: ActivityMainBinding
+    private val noteDB : NoteDatabase by lazy {
+        Room.databaseBuilder(this,NoteDatabase::class.java,NOTE_DATABASE)
+            .allowMainThreadQueries()
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+    private val noteAdapter by lazy { NoteAdapter( ) }
  override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
      binding = ActivityMainBinding.inflate(layoutInflater)
      setContentView(binding.root)
-     val sharedPref = getSharedPreferences("myPref", MODE_PRIVATE)
-     val editor = sharedPref.edit()
-     binding.apply {
-         btnSave.setOnClickListener {
-             val userName = editUserName.text.toString()
-             val email = editEmail.text.toString()
+binding.btnAddNote.setOnClickListener {
+    startActivity(Intent(this,AddNoteActivity::class.java))
+}
 
 
-             editor.apply {
-               putString("user_name",userName)
-                 putString("email",email)
-                 apply()
-             }
-         }
-         btnLoad.setOnClickListener {
-             val userName = sharedPref.getString("user_name",null)
-             val email = sharedPref.getString("email",null)
 
-             tvUserName.text = userName
-             tvEmail.text = email
-         }
-     }
+
+
+
+
+     //SharedPref:
+//     val sharedPref = getSharedPreferences("myPref", MODE_PRIVATE)
+//     val editor = sharedPref.edit()
+//     binding.apply {
+//         btnSave.setOnClickListener {
+//             val userName = editUserName.text.toString()
+//             val email = editEmail.text.toString()
+//
+//
+//             editor.apply {
+//               putString("user_name",userName)
+//                 putString("email",email)
+//                 apply()
+//             }
+//         }
+//         btnLoad.setOnClickListener {
+//             val userName = sharedPref.getString("user_name",null)
+//             val email = sharedPref.getString("email",null)
+//
+//             tvUserName.text = userName
+//             tvEmail.text = email
+//         }
+//     }
 
 //     val pro = arrayListOf(
 //         Programmer(
@@ -94,6 +116,32 @@ class MainActivity : AppCompatActivity(), Communicator {
 //            var today = DayOfWeeks.WED
 //            println(today)
 //        }
+     checkItem()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        checkItem()
+    }
+    private fun checkItem(){
+        binding.apply {
+            if(noteDB.dao().getAllNotes().isNotEmpty()){
+                rvNoteList.visibility= View.VISIBLE
+                tvEmpText.visibility= View.GONE
+                noteAdapter.differ.submitList(noteDB.dao().getAllNotes())
+                setupRecyclerView()
+            }else{
+                rvNoteList.visibility= View.GONE
+                tvEmpText.visibility= View.VISIBLE
+            }
+
+        }
+    }
+    private fun setupRecyclerView(){
+        binding.rvNoteList.apply {
+            layoutManager=LinearLayoutManager(this@MainActivity)
+            adapter=noteAdapter
+        }
     }
 //
     override fun passDatacom(editTextInput: String) {
